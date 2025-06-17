@@ -23,7 +23,8 @@ class SummaryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentSummaryBinding.inflate(inflater, container, false)
-        return _binding?.root       }
+        return _binding?.root
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
