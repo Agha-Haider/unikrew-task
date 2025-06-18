@@ -24,6 +24,8 @@ class AddTransactionFragment : Fragment() {
     private lateinit var viewModel: AddTransViewModel
 
     private lateinit var appContext: Context
+    var selectedType = "Income"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,23 +52,31 @@ class AddTransactionFragment : Fragment() {
 
                 }
             })
-
+        
         val categories = listOf("Food", "Transport", "Salary", "Rent")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, categories)
         binding?.categoryInput?.setAdapter(adapter)
 
+
+        binding?.categoryInput?.setOnClickListener {
+            binding?.categoryInput?.showDropDown()
+        }
+
+        val typeList = listOf("Income", "Expense")
+        val typeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, typeList)
+        binding?.typeInput?.setAdapter(typeAdapter)
+
+        binding?.typeInput?.setOnClickListener {
+            binding?.typeInput?.showDropDown()
+        }
+
         binding?.saveTransactionBtn?.setOnClickListener {
-            val selectedType = when (binding?.typeToggleGroup?.checkedButtonId) {
-                R.id.expenseBtn -> "Expense"
-                R.id.incomeBtn -> "Income"
-                else -> "Income" // default fallback
-            }
             if (checkValidation()) {
                 val trasaction = Transaction(
                     8,
-                    selectedType,
+                    binding?.typeInput?.text.toString(),
                     binding?.amountInput?.text.toString(),
-                    selectedType,
+                    binding?.typeInput?.text.toString(),
                     binding?.dateInput?.text.toString(),
                     binding?.descriptionInput?.text.toString()
 

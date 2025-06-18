@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/addTransactionFragment">
 
     <fragment
         android:id="@+id/addTransactionFragment"
@@ -19,4 +19,9 @@
             android:id="@+id/action_splashFragment_to_addTransactionFragment"
             app:destination="@id/addTransactionFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/summaryFragment"
+        android:name="com.example.unikrewtask.summary.SummaryFragment"
+        android:label="fragment_summary"
+        tools:layout="@layout/fragment_summary" />
 </navigation>
