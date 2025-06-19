@@ -9,7 +9,11 @@
         android:id="@+id/addTransactionFragment"
         android:name="com.example.unikrewtask.ui.add.AddTransactionFragment"
         android:label="fragment_add_transaction"
-        tools:layout="@layout/fragment_add_transaction" />
+        tools:layout="@layout/fragment_add_transaction" >
+        <action
+            android:id="@+id/action_addTransactionFragment_to_transactionListFragment"
+            app:destination="@id/transactionListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.unikrewtask.ui.splash.SplashFragment"
@@ -24,4 +28,9 @@
         android:name="com.example.unikrewtask.summary.SummaryFragment"
         android:label="fragment_summary"
         tools:layout="@layout/fragment_summary" />
+    <fragment
+        android:id="@+id/transactionListFragment"
+        android:name="com.example.unikrewtask.ui.list.TransactionListFragment"
+        android:label="fragment_transaction_list"
+        tools:layout="@layout/fragment_transaction_list" />
 </navigation>

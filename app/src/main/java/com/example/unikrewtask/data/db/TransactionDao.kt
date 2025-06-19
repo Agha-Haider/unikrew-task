@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.unikrewtask.data.model.Transaction
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -15,7 +16,7 @@ interface TransactionDao {
     suspend fun insertTransaction(transaction: Transaction)
 
     @Query("SELECT * FROM transaction_table ORDER BY date DESC")
-    fun getAllTransactions(): LiveData<List<Transaction>>
+    fun getAllTransactions(): Flow<List<Transaction>>
 
 
     @Query("SELECT * FROM transaction_table WHERE type = :type ORDER BY date DESC")

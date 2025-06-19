@@ -3,6 +3,7 @@ package com.example.unikrewtask.data.repository
 import androidx.lifecycle.LiveData
 import com.example.unikrewtask.data.db.TransactionDao
 import com.example.unikrewtask.data.model.Transaction
+import kotlinx.coroutines.flow.Flow
 
 class TransactionRepository(private  val transactionDao: TransactionDao) {
 
@@ -11,7 +12,7 @@ class TransactionRepository(private  val transactionDao: TransactionDao) {
       transactionDao.insertTransaction(transaction)
   }
 
-    suspend fun getAllTransaction():LiveData<List<Transaction>>{
+     fun getAllTransaction():Flow<List<Transaction>>{
         return transactionDao.getAllTransactions()
     }
 
