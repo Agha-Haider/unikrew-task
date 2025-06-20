@@ -16,7 +16,14 @@ class TransactionRepository(private  val transactionDao: TransactionDao) {
         return transactionDao.getAllTransactions()
     }
 
-    suspend fun getAllTransactionByType(type:String) :LiveData<List<Transaction>>{
-        return transactionDao.getTransactionsByType(type)
+    fun getAllTransactionByType(type: String): LiveData<Double> {
+        return transactionDao.getTotalAmountByType(type)
     }
+
+    fun getAllTransactionExpence(type: String): LiveData<Double> {
+        return transactionDao.getTotalAmountByType(type)
+    }
+//    fun getNetSavings(): LiveData<Double> {
+//        return transactionDao.getNetSavings()
+//    }
 }

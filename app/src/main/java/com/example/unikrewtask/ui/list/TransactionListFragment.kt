@@ -10,7 +10,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.unikrewtask.R
 import com.example.unikrewtask.databinding.FragmentTransactionListBinding
 import com.example.unikrewtask.ui.adapter.TransactionAdapter
 import com.example.unikrewtask.ui.add.AddTransViewModel
@@ -64,6 +66,10 @@ class TransactionListFragment : Fragment() {
                 Toast.makeText(requireContext(), "Select both dates", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding?.btnReset?.setOnClickListener{
+            viewModel.resetFilter()
+        }
     }
 
     private fun showStartDatePicker() {
@@ -71,7 +77,7 @@ class TransactionListFragment : Fragment() {
         DatePickerDialog(requireContext(), { _, year, month, day ->
             calendar.set(year, month, day)
             startDate = calendar.time
-            binding?.btnStartDate?.text = "Start: ${dateFormat.format(startDate!!)}"
+            binding?.btnStartDate?.text =  dateFormat.format(startDate)
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
     }
 
@@ -80,7 +86,7 @@ class TransactionListFragment : Fragment() {
         DatePickerDialog(requireContext(), { _, year, month, day ->
             calendar.set(year, month, day)
             endDate = calendar.time
-            binding?.btnEndDate?.text = "End: ${dateFormat.format(endDate!!)}"
+            binding?.btnEndDate?.text = dateFormat.format(endDate)
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show()
     }
 

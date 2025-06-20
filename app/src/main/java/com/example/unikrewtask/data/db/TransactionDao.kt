@@ -19,7 +19,9 @@ interface TransactionDao {
     fun getAllTransactions(): Flow<List<Transaction>>
 
 
-    @Query("SELECT * FROM transaction_table WHERE type = :type ORDER BY date DESC")
-    fun getTransactionsByType(type: String): LiveData<List<Transaction>>
+    @Query("SELECT COALESCE(SUM(CAST(amount AS REAL)), 0.0) FROM transaction_table WHERE type = :type")
+    fun getTotalAmountByType(type: String): LiveData<Double>
+
+
 
 }

@@ -32,5 +32,9 @@
         android:id="@+id/transactionListFragment"
         android:name="com.example.unikrewtask.ui.list.TransactionListFragment"
         android:label="fragment_transaction_list"
-        tools:layout="@layout/fragment_transaction_list" />
+        tools:layout="@layout/fragment_transaction_list" >
+        <action
+            android:id="@+id/action_transactionListFragment_to_summaryFragment"
+            app:destination="@id/summaryFragment" />
+    </fragment>
 </navigation>

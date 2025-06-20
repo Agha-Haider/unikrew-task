@@ -54,6 +54,12 @@ class AddTransViewModel(application: Application) : AndroidViewModel(application
         _filteredTransactions.value = filteredList
     }
 
+
+     val incomeTransactions: LiveData<Double> = repository.getAllTransactionByType("Income")
+     val expenceTransactions: LiveData<Double> = repository.getAllTransactionExpence("Expense")
+     //val netSavings: LiveData<Double> = repository.getNetSavings()
+
+
     fun resetFilter() {
         _filteredTransactions.value = _allTransactions.value
     }

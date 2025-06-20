@@ -37,6 +37,18 @@ class SummaryFragment : Fragment() {
         viewModel=ViewModelProvider(this).get(AddTransViewModel::class.java)
 
 
+        viewModel.incomeTransactions.observe(viewLifecycleOwner, Observer {amount->
+
+            binding?.incomeAmount?.setText(amount.toString())
+        })
+
+        viewModel.expenceTransactions.observe(viewLifecycleOwner, Observer {amount->
+            binding?.expenseAmount?.setText(amount.toString())
+        })
+//        viewModel.netSavings.observe(viewLifecycleOwner, Observer {amount->
+//            binding?.savingsAmount?.setText(amount.toString())
+//            Log.d("bahbah", "onViewCreated: "+amount)
+//        })
     }
 
     override fun onDestroyView() {
