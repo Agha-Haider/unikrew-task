@@ -7,15 +7,17 @@ import android.os.Handler
 import android.os.Looper
 import com.example.unikrewtask.MainActivity
 import com.example.unikrewtask.R
+import com.example.unikrewtask.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            })
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, 3000L)
     }
