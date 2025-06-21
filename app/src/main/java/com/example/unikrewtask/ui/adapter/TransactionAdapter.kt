@@ -41,6 +41,7 @@ class TransactionAdapter(
         notifyDataSetChanged()
     }
 
+
     fun resetList() {
         displayList = originalList
         notifyDataSetChanged()

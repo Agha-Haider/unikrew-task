@@ -16,11 +16,11 @@ class TransactionRepository(private  val transactionDao: TransactionDao) {
         return transactionDao.getAllTransactions()
     }
 
-    fun getAllTransactionByType(type: String): LiveData<Double> {
+    fun getAllTransactionByType(type: String): Flow<Double> {
         return transactionDao.getTotalAmountByType(type)
     }
 
-    fun getAllTransactionExpence(type: String): LiveData<Double> {
+    fun getAllTransactionExpence(type: String): Flow<Double> {
         return transactionDao.getTotalAmountByType(type)
     }
 //    fun getNetSavings(): LiveData<Double> {

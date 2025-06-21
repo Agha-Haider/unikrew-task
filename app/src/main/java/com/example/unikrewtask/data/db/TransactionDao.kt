@@ -20,7 +20,7 @@ interface TransactionDao {
 
 
     @Query("SELECT COALESCE(SUM(CAST(amount AS REAL)), 0.0) FROM transaction_table WHERE type = :type")
-    fun getTotalAmountByType(type: String): LiveData<Double>
+    fun getTotalAmountByType(type: String): Flow<Double>
 
 
 

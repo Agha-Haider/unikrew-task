@@ -59,8 +59,16 @@ dependencies {
     //navigation
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
 
+    //for chart
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+
     //Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+
 
     implementation ("com.google.android.material:material:1.11")
     implementation("androidx.core:core-ktx:1.9.0")

@@ -1,5 +1,6 @@
 package com.example.unikrewtask.ui.add
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
@@ -9,9 +10,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.unikrewtask.MainActivity
 import com.example.unikrewtask.R
 import com.example.unikrewtask.data.model.Transaction
 import com.example.unikrewtask.databinding.FragmentAddTransactionBinding
@@ -97,13 +101,12 @@ class AddTransactionFragment : Fragment() {
 
                 viewModel.insertTransaction(transaction)
 
+                hideKeyboard()
+
                 Toast.makeText(requireContext(), "Transaction Saved", Toast.LENGTH_SHORT).show()
 
                 clearFields()
 
-                if (findNavController().currentDestination?.id == R.id.addTransactionFragment) {
-                    findNavController().navigate(R.id.action_addTransactionFragment_to_transactionListFragment)
-                }
             } else {
                 Toast.makeText(requireContext(), "Please fill all required fields", Toast.LENGTH_SHORT).show()
             }
@@ -112,7 +115,7 @@ class AddTransactionFragment : Fragment() {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-
+                showExitDialog(requireActivity())
             }
         })
     }
@@ -136,6 +139,27 @@ class AddTransactionFragment : Fragment() {
                 || TextUtils.isEmpty(type)
                 || TextUtils.isEmpty(date))
     }
+    fun hideKeyboard() {
+        val imm = requireContext().getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+        view?.let { imm.hideSoftInputFromWindow(it.windowToken, 0) }
+    }
+
+
+    private fun showExitDialog(activity: Activity) {
+        AlertDialog.Builder(activity)
+            .setTitle("Exit App")
+            .setMessage("Are you sure you want to exit?")
+            .setPositiveButton("Yes") { dialog, _ ->
+                dialog.dismiss()
+                requireActivity().finish()
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(true)
+            .show()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
